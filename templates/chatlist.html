@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+    {% if chatlist %}
+        <h2> Chatlist:</h2>
+        <ul>
+            {% for chat in chatlist %}
+                <li>
+                    <a href="{{ url_for('chatroom', chat_id=loop.index)}}"> {{ chat }} </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h3>Didn't find the chatroom you're looking for?</h3>
+        <form class="form-signin" action="{{ url_for('chatroom', chat_id=chatlist | length +1)}}" method="post">
+        <div class="form-group">
+            <label for="chatroom_name"> Please enter chatoom's name you want to create. </label>
+            <input type="text" id="chatroom_name" class="form-control" placeholder="Chat Room Name" required name="chatroom_name" value="">
+            <button type="submit" class="btn btn-lg btn-primary"> Submit </button>
+        </div>
+</form>
+{% endblock %}
