@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 
 {% block body %}
+    <ul class="messages my-4"> </ul>
 
+    <form action="javascript:void(0);" class="mt-2" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"> {{ user_name }} </span>
+            </div>
 
+            <input type="text" class="form-control" aria-label="Sizing example input" placeholder="Type message here" aria-describedby="inputGroup-sizing-default">
+            <button type="submit" class="ml-1  btn btn-primary">Send</button>
+        </div>
+    </form>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}

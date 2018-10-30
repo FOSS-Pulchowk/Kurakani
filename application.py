@@ -1,6 +1,9 @@
+from typing import List, Any
+
 import os
 
-from flask import Flask, render_template, session, request, redirect, url_for
+from datetime import datetime
+from flask import Flask, render_template, session, request, redirect, url_for, jsonify
 from flask_session import Session
 from flask_socketio import SocketIO, emit
 
@@ -15,7 +18,7 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
 chatlist = []
-
+messagelist = []
 
 @app.route("/")
 def index():
@@ -48,7 +51,20 @@ def chatroom(chat_id):
         if len(chatlist) < chat_id:
             return render_template("error.html", error_message="Chatroom Doesn't Exist."
                                                                " If you want the same chatroom, go back and create one")
-    return "Welcome to chatroom %d" % chat_id
+    return render_template("chatroom.html", user_name=session["user_name"])
+
+
+@socketio.on("submit message")
+def message(data):
+    selection = data["selection"]
+    time = datetime.now().strftime("%Y-%m-%d %H:%M")
+    messagelist.append({"selection": selection, "time": time, "user_name": session["user_name"]})
+    emit("cast message", {"selection": selection, "user_name": session["user_name"], "time": time}, broadcast=True)
+
+
+@app.route("/listmessages")
+def listmessages():
+    return jsonify(messagelist)
 
 
 if __name__ == "__main__":
