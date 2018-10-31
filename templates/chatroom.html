@@ -1,7 +1,24 @@
 {% extends 'base.html' %}
 
+{% block anchor %}
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('chatroomlist') }}">
+                ChatroomList
+            </a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link " href='{{ url_for('logout') }}'>
+                Logout <strong>{{ user_name }}</strong>
+            </a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block body %}
-    <ul class="messages my-4"> </ul>
+    <ul class="my-4" id="messages"> </ul>
 
     <form action="javascript:void(0);" class="mt-2" method="post">
         <div class="input-group mb-3">
@@ -15,5 +32,5 @@
     </form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='chatroom.js') }}"></script>
 {% endblock %}
