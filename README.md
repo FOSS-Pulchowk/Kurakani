@@ -2,7 +2,7 @@
 
 Web Programming with Python and JavaScript
 
-##Welcome to KuraKani
+## Welcome to KuraKani
 
 It is an online messaging service made using Flask, similar in spirit to **Slack**, aka _Flack_. Here, you can sign into your site with a display name, create channels (i.e. chatrooms) to communicate in, as well as see and join existing channels. Once a channel is selected, you will be able to send and receive messages with one another in real time. If your connection is lost due to some technical issue, then no problem, you can see the messages sent by your fellow chatmates in your absence. 
 
