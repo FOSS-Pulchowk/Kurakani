@@ -12,7 +12,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configuring socketio
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["SECRET_KEY"] = 'e11c5a47c7d64810c28824a784e6610f23e27aaf63157c2f'
 socketio = SocketIO(app)
 
 chatlist = []  # List to store chatroom names
